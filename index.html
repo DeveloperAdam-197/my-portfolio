@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam Mohamed | Flutter &amp; Dart Developer</title>
+  <meta name="description" content="Portfolio of Adam Mohamed, a Flutter & Dart Developer and Engineering track student specializing in mobile productivity apps with responsive UI and SQLite local storage.">
+  <meta name="keywords" content="Adam Mohamed, Flutter Developer, Dart Developer, Mobile Development, SQLite, Portfolio">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%2302569B' d='M18.5 2L4 16.5l4.5 4.5L27.5 2z'/><path fill='%230175C2' d='M18.5 15.5L9.5 24.5l4.5 4.5L27.5 15.5z'/><path fill='%2300D2B5' d='M18.5 15.5l-4.5 4.5 4.5 4.5 4.5-4.5z'/></svg>">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo" aria-label="Adam Mohamed Portfolio Home">
+        <span class="logo-symbol">&lt;AM</span>
+        <span class="logo-dot">/&gt;</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-menu" id="navMenu" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle light and dark theme" title="Toggle theme">
+          <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="Adam Mohamed on GitHub" title="GitHub Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+
+        <button id="mobileMenuBtn" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-indicator"></span>
+            <span>Engineering Track &bull; Baccalaureate II</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Adam Mohamed</span>
+          </h1>
+          
+          <h2 class="hero-subtitle">
+            <span class="flutter-highlight">Flutter</span> &amp; <span class="dart-highlight">Dart</span> Developer
+          </h2>
+          
+          <p class="hero-description">
+            Passionate about crafting clean, responsive, and intuitive mobile productivity apps. Focused on solid architecture, local data persistence with SQLite, and delightful user experiences.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Featured Project</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="GitHub Profile">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <div class="hero-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">⚡</span>
+              <span>Fast &amp; Responsive UI</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">💾</span>
+              <span>SQLite Local Storage</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🎯</span>
+              <span>Productivity Focused</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="flutter-code-card">
+            <div class="code-card-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="code-card-title">developer_profile.dart</span>
+              <span class="badge-flutter">Flutter 3.x</span>
+            </div>
+            <div class="code-card-body">
+              <pre><code><span class="token-keyword">class</span> <span class="token-class">AdamMohamed</span> <span class="token-keyword">extends</span> <span class="token-class">StatelessWidget</span> {
+  <span class="token-keyword">final</span> <span class="token-type">String</span> track = <span class="token-string">"Engineering"</span>;
+  <span class="token-keyword">final</span> <span class="token-type">List&lt;String&gt;</span> focus = [
+    <span class="token-string">"Flutter &amp; Dart"</span>,
+    <span class="token-string">"Productivity Apps"</span>,
+    <span class="token-string">"Local SQLite Storage"</span>,
+  ];
+
+  <span class="token-annotation">@override</span>
+  <span class="token-type">Widget</span> <span class="token-function">build</span>(<span class="token-type">BuildContext</span> context) {
+    <span class="token-keyword">return</span> <span class="token-class">AppShowcase</span>(
+      status: <span class="token-string">"Always Growing &amp; Building"</span>,
+      passion: <span class="token-string">"Pixel-perfect Mobile UX"</span>,
+    );
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="floating-badge badge-top-right">
+            <div class="badge-icon-wrap flutter-bg">
+              <svg viewBox="0 0 32 32" width="22" height="22">
+                <path fill="#02569B" d="M18.5 2L4 16.5l4.5 4.5L27.5 2z"/>
+                <path fill="#0175C2" d="M18.5 15.5L9.5 24.5l4.5 4.5L27.5 15.5z"/>
+                <path fill="#00D2B5" d="M18.5 15.5l-4.5 4.5 4.5 4.5 4.5-4.5z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="floating-badge-title">Flutter Specialist</div>
+              <div class="floating-badge-sub">Cross-Platform Apps</div>
+            </div>
+          </div>
+
+          <div class="floating-badge badge-bottom-left">
+            <div class="badge-icon-wrap sqlite-bg">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="floating-badge-title">SQLite Local DB</div>
+              <div class="floating-badge-sub">Offline-first Persistence</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Engineering Mindset, Mobile Focus</h2>
+          <p class="section-subtitle">Blending analytical discipline with modern mobile design principles.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-main-card">
+            <div class="about-avatar-wrapper">
+              <div class="about-avatar">
+                <span class="avatar-initials">AM</span>
+              </div>
+              <div class="avatar-status">
+                <span class="status-indicator"></span>
+                <span>Active Developer</span>
+              </div>
+            </div>
+
+            <h3 class="about-name">Adam Mohamed</h3>
+            <div class="about-role">Flutter &amp; Dart Developer &bull; Engineering Track</div>
+
+            <p class="about-quote">
+              "I am Adam Mohamed, a second-year baccalaureate student in the Engineering track. I focus on building mobile apps using Flutter and Dart, particularly productivity apps. I am continuously improving my skills in responsive UI, local storage, and app development to grow as a Flutter developer."
+            </p>
+
+            <div class="about-details-list">
+              <div class="detail-row">
+                <span class="detail-label">Academic Track:</span>
+                <span class="detail-value">Baccalaureate II &bull; Engineering</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Primary Stack:</span>
+                <span class="detail-value">Flutter, Dart, SQLite</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">App Domain:</span>
+                <span class="detail-value">Mobile Productivity &amp; Utilities</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Version Control:</span>
+                <span class="detail-value">Git &amp; GitHub</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-pillars">
+            <div class="pillar-card">
+              <div class="pillar-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Mobile Productivity</h4>
+                <p>Designing user-centric interfaces that streamline daily workflows, remove friction, and keep users focused and organized.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Responsive UI Architecture</h4>
+                <p>Creating Flutter layouts that smoothly adapt across all screen sizes, orientations, and mobile form factors.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Local Storage &amp; SQLite</h4>
+                <p>Implementing reliable offline persistence, structured SQL tables, CRUD operations, and consistent local state.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Continuous Skill Growth</h4>
+                <p>Active learning ethos in state management, defensive input validation, error handling, and robust tooling.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Technical Skills</span>
+          <h2 class="section-title">Tools &amp; Technologies</h2>
+          <p class="section-subtitle">Carefully curated toolkit across mobile, web, and development workflows.</p>
+        </div>
+
+        <div class="skills-filter-tabs" role="tablist" aria-label="Skills Filter">
+          <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Skills</button>
+          <button class="filter-tab" data-filter="mobile" role="tab" aria-selected="false">Mobile &amp; Flutter</button>
+          <button class="filter-tab" data-filter="programming" role="tab" aria-selected="false">Programming</button>
+          <button class="filter-tab" data-filter="web" role="tab" aria-selected="false">Web Development</button>
+          <button class="filter-tab" data-filter="tools" role="tab" aria-selected="false">Tools &amp; IDEs</button>
+        </div>
+
+        <div class="skills-categories-grid">
+          <div class="skill-category-card" data-category="mobile">
+            <div class="category-header">
+              <div class="category-icon mobile-color">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Mobile Development</h3>
+                <span class="category-subtitle">Core Specialization</span>
+              </div>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-badge primary-highlight">
+                <div class="skill-badge-icon flutter-icon">
+                  <svg viewBox="0 0 32 32" width="20" height="20">
+                    <path fill="#02569B" d="M18.5 2L4 16.5l4.5 4.5L27.5 2z"/>
+                    <path fill="#0175C2" d="M18.5 15.5L9.5 24.5l4.5 4.5L27.5 15.5z"/>
+                    <path fill="#00D2B5" d="M18.5 15.5l-4.5 4.5 4.5 4.5 4.5-4.5z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Flutter</span>
+                  <span class="skill-tag">Mobile Framework</span>
+                </div>
+              </div>
+
+              <div class="skill-badge primary-highlight">
+                <div class="skill-badge-icon dart-icon">
+                  <svg viewBox="0 0 32 32" width="20" height="20">
+                    <path fill="#00D2B5" d="M5 5l12 2 10 10-10 10L5 17z"/>
+                    <path fill="#0175C2" d="M17 7l10 10-6 6L11 13z"/>
+                    <path fill="#02569B" d="M21 23l-4 4-10-10 4-4z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Dart</span>
+                  <span class="skill-tag">Core Language</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon sqlite-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">SQLite</span>
+                  <span class="skill-tag">Local Storage</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon state-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">State Management</span>
+                  <span class="skill-tag">setState &amp; Reactive UI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-category="programming">
+            <div class="category-header">
+              <div class="category-icon code-color">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Programming</h3>
+                <span class="category-subtitle">Logic &amp; Implementation</span>
+              </div>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-badge primary-highlight">
+                <div class="skill-badge-icon dart-icon">
+                  <svg viewBox="0 0 32 32" width="20" height="20">
+                    <path fill="#00D2B5" d="M5 5l12 2 10 10-10 10L5 17z"/>
+                    <path fill="#0175C2" d="M17 7l10 10-6 6L11 13z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Dart</span>
+                  <span class="skill-tag">OOP &amp; Asynchronous</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon js-icon">
+                  <span class="js-text">JS</span>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">JavaScript</span>
+                  <span class="skill-tag">Modern ES6+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-category="web">
+            <div class="category-header">
+              <div class="category-icon web-color">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Web Development</h3>
+                <span class="category-subtitle">Responsive Front-End</span>
+              </div>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-badge">
+                <div class="skill-badge-icon html-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12 0L1.5 2.5 3 19.5 12 24l9-4.5 1.5-17L12 0zm5.6 7.5H9.2l.2 2h7.8l-.6 6.8-4.6 1.3-4.6-1.3-.3-3.3h2l.1 1.7 2.8.8 2.8-.8.3-3.2H6.9L6.3 5.5h11.6l-.3 2z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">HTML5</span>
+                  <span class="skill-tag">Semantic Markup</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon css-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M12 0L1.5 2.5 3 19.5 12 24l9-4.5 1.5-17L12 0zm5.6 7.5l-.2 2.2H9.2l.2 2h7.6l-.6 6.8-4.4 1.2-4.4-1.2-.3-3.3h2l.1 1.7 2.6.7 2.6-.7.3-3.2H6.9l-.6-6.5h11.6z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">CSS3</span>
+                  <span class="skill-tag">Flexbox, Grid, Animations</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon js-icon">
+                  <span class="js-text">JS</span>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">JavaScript</span>
+                  <span class="skill-tag">DOM &amp; Interactivity</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category-card" data-category="tools">
+            <div class="category-header">
+              <div class="category-icon tools-color">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Tools &amp; Workflows</h3>
+                <span class="category-subtitle">Developer Ecosystem</span>
+              </div>
+            </div>
+
+            <div class="skills-list">
+              <div class="skill-badge">
+                <div class="skill-badge-icon vscode-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17.5 1.5L7.2 10.3 3.1 7.2.5 8.9v6.2l2.6 1.7 4.1-3.1 10.3 8.8 6-3.1V4.6l-6-3.1zm0 3.7l3 1.6v10.4l-3 1.6V5.2zM8.3 12l-4.7 3.6V8.4L8.3 12zm2.1.8l6.1 5.3v-2.7L12.5 12l4-3.4V5.9l-6.1 5.3v1.6z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Visual Studio Code</span>
+                  <span class="skill-tag">Primary Code Editor</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon android-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M17.5 6.2l1.8-3.1c.1-.2.1-.5-.1-.7-.2-.2-.5-.2-.7-.1l-1.9 3.2C15.1 4.9 13.6 4.5 12 4.5c-1.6 0-3.1.4-4.6 1.1L5.5 2.4c-.2-.1-.5-.1-.7.1-.2.2-.2.5-.1.7l1.8 3.1C3.8 7.7 2 10.4 2 13.5h20c0-3.1-1.8-5.8-4.5-7.3zM7.5 10c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm9 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zM2 15v5c0 .6.4 1 1 1h1v3c0 .6.4 1 1 1s1-.4 1-1v-3h12v3c0 .6.4 1 1 1s1-.4 1-1v-3h1c.6 0 1-.4 1-1v-5H2z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Android Studio</span>
+                  <span class="skill-tag">Emulators &amp; Android SDK</span>
+                </div>
+              </div>
+
+              <div class="skill-badge">
+                <div class="skill-badge-icon git-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M23.5 11.5L12.5.5c-.7-.7-1.8-.7-2.5 0L7.5 3c-.4.4-.6.9-.6 1.4 0 .5.2 1 .6 1.4l2.1 2.1v5.2c-.6.3-1.1.8-1.4 1.4L4.8 11.1c-.2-.2-.5-.3-.8-.3-.6 0-1.1.5-1.1 1.1 0 .3.1.6.3.8l5.8 5.8c.4.4.9.6 1.4.6.5 0 1-.2 1.4-.6l11.7-11.7c.7-.7.7-1.8 0-2.5zM12 18.2c-.7 0-1.2-.6-1.2-1.2 0-.7.6-1.2 1.2-1.2.7 0 1.2.6 1.2 1.2 0 .7-.5 1.2-1.2 1.2zm1.2-6.5v-3c.4-.2.7-.6.9-1 .4.2.8.4 1.3.4 1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2c0 .3.1.5.2.8l-2.4 2.4v.4z"/>
+                  </svg>
+                </div>
+                <div class="skill-badge-info">
+                  <span class="skill-name">Git &amp; GitHub</span>
+                  <span class="skill-tag">Version Control &amp; Collab</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Project Section -->
+    <section class="project-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured Project</span>
+          <h2 class="section-title">To-Do Mobile Application</h2>
+          <p class="section-subtitle">A simple, powerful productivity app built with Flutter, Dart, and SQLite local storage.</p>
+        </div>
+
+        <div class="project-showcase-grid">
+          <div class="project-info-card">
+            <div class="project-badge-row">
+              <span class="badge-featured">⭐ Featured App</span>
+              <span class="badge-mobile">Mobile Application</span>
+            </div>
+
+            <h3 class="project-name">To-Do App</h3>
+            <p class="project-lead">
+              A simple productivity mobile application for managing daily tasks.
+            </p>
+
+            <div class="project-tech-stack">
+              <span class="tech-pill flutter-pill">
+                <span class="tech-dot"></span> Flutter
+              </span>
+              <span class="tech-pill dart-pill">
+                <span class="tech-dot"></span> Dart
+              </span>
+              <span class="tech-pill sqlite-pill">
+                <span class="tech-dot"></span> SQLite
+              </span>
+              <span class="tech-pill state-pill">
+                <span class="tech-dot"></span> setState
+              </span>
+            </div>
+
+            <div class="project-features-list">
+              <h4 class="features-title">Key Implemented Features:</h4>
+              <ul class="feature-items">
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Add Tasks:</strong> Quickly create new tasks with instant list update.
+                  </div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Edit Tasks:</strong> Modify task descriptions without losing task completion status.
+                  </div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Delete Tasks:</strong> Remove completed or obsolete tasks cleanly.
+                  </div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Mark as Completed:</strong> Visual checkbox toggle with animated strike-through state.
+                  </div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Local Storage (SQLite):</strong> Offline-first persistence ensuring tasks remain intact across app restarts.
+                  </div>
+                </li>
+                <li class="feature-item">
+                  <span class="feature-check">✓</span>
+                  <div>
+                    <strong>Input Validation &amp; Error Handling:</strong> Guards against empty submissions and malformed entries with user-friendly alerts.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="architecture-box">
+              <div class="arch-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span>Architecture Highlights</span>
+              </div>
+              <div class="arch-content">
+                <p><strong>Database Helper:</strong> Encapsulates SQLite table creation and CRUD methods.</p>
+                <p><strong>Reactive State:</strong> Streamlined UI synchronization using Flutter setState pattern.</p>
+              </div>
+            </div>
+
+            <div class="simulator-instructions">
+              <span class="instruction-icon">👉</span>
+              <span><strong>Interactive Demo:</strong> Try the live simulated Flutter app directly on the phone to the right! Add, complete, edit, or delete tasks in real-time.</span>
+            </div>
+          </div>
+
+          <!-- Phone Simulator -->
+          <div class="simulator-wrapper">
+            <div class="simulator-phone">
+              <div class="phone-notch">
+                <div class="phone-camera"></div>
+                <div class="phone-speaker"></div>
+              </div>
+
+              <div class="phone-screen">
+                <div class="simulator-status-bar">
+                  <span class="status-time" id="simTime">09:41</span>
+                  <div class="status-icons">
+                    <svg width="14" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/>
+                    </svg>
+                    <svg width="14" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+                    </svg>
+                    <span class="battery-icon">
+                      <span class="battery-level"></span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flutter-appbar">
+                  <div class="appbar-title-group">
+                    <svg class="appbar-flutter-logo" viewBox="0 0 32 32" width="18" height="18">
+                      <path fill="#ffffff" d="M18.5 2L4 16.5l4.5 4.5L27.5 2z"/>
+                      <path fill="#ffffff" opacity="0.8" d="M18.5 15.5L9.5 24.5l4.5 4.5L27.5 15.5z"/>
+                      <path fill="#00D2B5" d="M18.5 15.5l-4.5 4.5 4.5 4.5 4.5-4.5z"/>
+                    </svg>
+                    <h4 class="appbar-title">To-Do Tasks</h4>
+                  </div>
+                  <div class="appbar-counter" id="appbarCounter" title="Remaining tasks">
+                    <span>2 left</span>
+                  </div>
+                </div>
+
+                <div class="app-input-section">
+                  <form id="todoForm" class="todo-form" autocomplete="off">
+                    <div class="input-field-wrap">
+                      <input 
+                        type="text" 
+                        id="todoInput" 
+                        class="todo-input" 
+                        placeholder="Add a new task (e.g., Study Dart)..." 
+                        maxlength="60"
+                      />
+                      <button type="submit" class="btn-add-task" aria-label="Add task" title="Add task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="todo-validation-error" id="todoError" role="alert"></div>
+                  </form>
+                </div>
+
+                <div class="app-filter-tabs">
+                  <button class="app-chip active" data-filter="all">All</button>
+                  <button class="app-chip" data-filter="active">Active</button>
+                  <button class="app-chip" data-filter="completed">Completed</button>
+                </div>
+
+                <div class="app-tasks-container">
+                  <ul class="tasks-list" id="tasksList" aria-live="polite"></ul>
+                  <div class="empty-state" id="emptyState" style="display: none;">
+                    <span class="empty-emoji">🎉</span>
+                    <p class="empty-text">No tasks here!</p>
+                    <span class="empty-sub">Add a task above to get started</span>
+                  </div>
+                </div>
+
+                <div class="app-snackbar" id="appSnackbar" aria-live="assertive">
+                  <span id="snackbarText">Database updated (SQLite)</span>
+                </div>
+
+                <div class="simulator-screen-footer">
+                  <button id="resetDemoBtn" class="btn-reset-demo" title="Reset sample tasks">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span>Reset Demo</span>
+                  </button>
+                  <span class="db-sync-indicator">
+                    <span class="db-dot"></span> SQLite Local DB
+                  </span>
+                </div>
+
+                <div class="home-indicator"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+          <p class="section-subtitle">Interested in Flutter development, engineering projects, or sharing insights? Reach out below.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <h3 class="contact-info-title">Contact Information</h3>
+            <p class="contact-info-desc">
+              I am always keen to discuss mobile application development, Flutter techniques, or new learning initiatives.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <span class="contact-method-label">Developer</span>
+                  <span class="contact-method-val">Adam Mohamed</span>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="contact-method-label">Academic Path</span>
+                  <span class="contact-method-val">Baccalaureate II &bull; Engineering Track</span>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="contact-method-label">Specialization</span>
+                  <span class="contact-method-val">Flutter &amp; Dart Mobile Apps</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="github-profile-card">
+              <div class="github-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <div>
+                  <h4 class="github-title">GitHub Profile</h4>
+                  <span class="github-sub">Explore source code &amp; repositories</span>
+                </div>
+              </div>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <span>View on GitHub</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <h3 class="form-title">Send a Message</h3>
+            <p class="form-subtitle">Fill out the form below and I'll get back to you promptly.</p>
+
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contactName" class="form-label">
+                  Your Name <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input 
+                    type="text" 
+                    id="contactName" 
+                    name="name" 
+                    class="form-control" 
+                    placeholder="e.g. John Doe"
+                    required 
+                    minlength="2"
+                  />
+                </div>
+                <span class="field-error" id="nameError">Please enter your name (at least 2 characters).</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">
+                  Your Email Address <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input 
+                    type="email" 
+                    id="contactEmail" 
+                    name="email" 
+                    class="form-control" 
+                    placeholder="e.g. john@example.com"
+                    required
+                  />
+                </div>
+                <span class="field-error" id="emailError">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <div class="label-with-counter">
+                  <label for="contactMessage" class="form-label">
+                    Message <span class="required-star">*</span>
+                  </label>
+                  <span class="char-counter" id="charCounter">0 / 500</span>
+                </div>
+                <div class="input-wrapper">
+                  <textarea 
+                    id="contactMessage" 
+                    name="message" 
+                    rows="5" 
+                    class="form-control" 
+                    placeholder="Hello Adam, I'd like to talk about..."
+                    required 
+                    minlength="10"
+                    maxlength="500"
+                  ></textarea>
+                </div>
+                <span class="field-error" id="messageError">Please enter a message (at least 10 characters).</span>
+              </div>
+
+              <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+                <span class="btn-text">Send Message</span>
+                <svg class="send-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span class="btn-spinner" style="display: none;"></span>
+              </button>
+            </form>
+
+            <div class="form-success-banner" id="formSuccess" style="display: none;" role="status">
+              <div class="success-icon">✓</div>
+              <div>
+                <strong>Thank you! Your message has been sent.</strong>
+                <p>I appreciate you reaching out and will respond shortly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-symbol">&lt;AM</span>
+          <span class="logo-dot">/&gt;</span>
+        </a>
+        <p class="footer-tagline">
+          Adam Mohamed &bull; Flutter &amp; Dart Developer &bull; Engineering Track
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; <span id="currentYear"></span> Adam Mohamed. Built with clean HTML, CSS &amp; JavaScript. Inspired by Flutter.
+        </p>
+        <button id="backToTop" class="btn-back-to-top" aria-label="Scroll back to top" title="Back to top">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="portfolio-toast" id="portfolioToast" role="alert" aria-live="assertive">
+    <span class="toast-icon">ℹ️</span>
+    <span class="toast-message" id="toastMessage"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

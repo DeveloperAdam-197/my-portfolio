@@ -1,0 +1,2226 @@
+/* ==========================================================================
+   ADAM MOHAMED - PORTFOLIO STYLESHEET
+   Modern, Vibrant, Flutter-Inspired Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS CUSTOM PROPERTIES & COLOR TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Flutter Brand Palette */
+  --flutter-dark: #02569B;
+  --flutter-mid: #0175C2;
+  --flutter-sky: #027DFD;
+  --flutter-cyan: #13B9FD;
+  --electric-teal: #00D2B5;
+  --accent-purple: #7C3AED;
+  
+  /* Gradients */
+  --grad-primary: linear-gradient(135deg, #027DFD 0%, #00D2B5 100%);
+  --grad-flutter: linear-gradient(135deg, #02569B 0%, #0175C2 50%, #00D2B5 100%);
+  --grad-accent: linear-gradient(135deg, #7C3AED 0%, #027DFD 100%);
+  --grad-glow: radial-gradient(circle, rgba(0, 210, 181, 0.15) 0%, rgba(2, 125, 253, 0.05) 50%, transparent 70%);
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+
+  /* Transitions & Shadows */
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 72px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 14px;
+  --border-radius-lg: 20px;
+  --border-radius-full: 9999px;
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+  --bg-primary: #0A0F1D;
+  --bg-secondary: #0F172A;
+  --bg-tertiary: #17223B;
+  --bg-card: rgba(19, 29, 53, 0.72);
+  --bg-card-hover: rgba(26, 39, 70, 0.85);
+  --bg-input: rgba(15, 23, 42, 0.85);
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 210, 181, 0.4);
+  --border-card: rgba(2, 125, 253, 0.18);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 35px rgba(0, 210, 181, 0.25);
+  --shadow-glow-blue: 0 0 35px rgba(2, 125, 253, 0.25);
+
+  --header-bg: rgba(10, 15, 29, 0.82);
+  --code-bg: #090D16;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #EEF4FA;
+  --bg-tertiary: #E1EAF5;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #FFFFFF;
+  --bg-input: #FFFFFF;
+  
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  
+  --border-subtle: rgba(2, 86, 155, 0.12);
+  --border-active: rgba(2, 125, 253, 0.6);
+  --border-card: rgba(2, 125, 253, 0.16);
+  
+  --shadow-sm: 0 2px 8px rgba(2, 86, 155, 0.06);
+  --shadow-md: 0 8px 24px rgba(2, 86, 155, 0.09);
+  --shadow-lg: 0 16px 36px rgba(2, 86, 155, 0.12);
+  --shadow-glow: 0 0 30px rgba(0, 210, 181, 0.2);
+  --shadow-glow-blue: 0 0 30px rgba(2, 125, 253, 0.18);
+
+  --header-bg: rgba(248, 250, 252, 0.88);
+  --code-bg: #1E293B;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL BASE & RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 20px);
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+button, input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--electric-teal);
+  outline-offset: 3px;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   AMBIENT BACKGROUND GLOWS
+   -------------------------------------------------------------------------- */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
+  opacity: 0.45;
+  transition: opacity var(--transition-smooth);
+}
+
+.glow-1 {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle, var(--electric-teal), transparent 70%);
+}
+
+.glow-2 {
+  width: 520px;
+  height: 520px;
+  top: 45%;
+  left: -160px;
+  background: radial-gradient(circle, var(--flutter-sky), transparent 70%);
+}
+
+.glow-3 {
+  width: 420px;
+  height: 420px;
+  bottom: 5%;
+  right: -100px;
+  background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 1000;
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.header-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--font-code);
+  letter-spacing: -0.5px;
+}
+
+.logo-symbol {
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.logo-dot {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 2px;
+}
+
+.brand-logo:hover .logo-symbol {
+  color: var(--flutter-sky);
+}
+
+/* Nav Menu */
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 8px 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--grad-primary);
+  border-radius: 2px;
+  transition: width var(--transition-smooth);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn,
+.btn-icon {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--border-radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover,
+.btn-icon:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--electric-teal);
+  color: var(--electric-teal);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Theme Icon Visibility */
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+[data-theme="light"] .sun-icon {
+  display: none;
+}
+[data-theme="light"] .moon-icon {
+  display: block;
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+
+.mobile-menu-toggle.open .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle.open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.open .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS & BADGES
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 26px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(2, 125, 253, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 210, 181, 0.45);
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--electric-teal);
+  color: var(--electric-teal);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.btn-outline:hover {
+  background: var(--bg-card);
+  border-color: var(--flutter-sky);
+  color: var(--flutter-sky);
+  transform: translateY(-2px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Section Header Utility */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 54px;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--electric-teal);
+  background: rgba(0, 210, 181, 0.1);
+  border: 1px solid rgba(0, 210, 181, 0.25);
+  border-radius: var(--border-radius-full);
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.gradient-text {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 80px 0 100px;
+  position: relative;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--electric-teal);
+  box-shadow: 0 0 0 0 rgba(0, 210, 181, 0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 210, 181, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 210, 181, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 210, 181, 0);
+  }
+}
+
+.hero-title {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.flutter-highlight {
+  color: var(--electric-teal);
+}
+
+.dart-highlight {
+  color: var(--flutter-sky);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 34px;
+  max-width: 580px;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.highlight-icon {
+  font-size: 1.1rem;
+}
+
+/* Hero Visual / Code Card */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.flutter-code-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--code-bg);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
+  overflow: hidden;
+  transition: transform var(--transition-smooth);
+}
+
+.flutter-code-card:hover {
+  transform: translateY(-4px);
+}
+
+.code-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.red { background: #FF5F56; }
+.dot.yellow { background: #FFBD2E; }
+.dot.green { background: #27C93F; }
+
+.code-card-title {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  color: #94A3B8;
+}
+
+.badge-flutter {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--border-radius-full);
+  background: rgba(0, 210, 181, 0.15);
+  color: var(--electric-teal);
+  border: 1px solid rgba(0, 210, 181, 0.3);
+}
+
+.code-card-body {
+  padding: 20px;
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #E2E8F0;
+  overflow-x: auto;
+}
+
+/* Syntax Highlighting */
+.token-keyword { color: #F43F5E; }
+.token-class { color: #38BDF8; }
+.token-type { color: #A78BFA; }
+.token-string { color: #34D399; }
+.token-annotation { color: #FBBF24; }
+.token-function { color: #60A5FA; }
+
+/* Floating Decorative Badges */
+.floating-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-md);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+}
+
+.badge-top-right {
+  top: -18px;
+  right: -20px;
+  animation-delay: 0s;
+}
+
+.badge-bottom-left {
+  bottom: -22px;
+  left: -20px;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.badge-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-icon-wrap.flutter-bg {
+  background: rgba(2, 125, 253, 0.15);
+}
+
+.badge-icon-wrap.sqlite-bg {
+  background: rgba(0, 210, 181, 0.15);
+  color: var(--electric-teal);
+}
+
+.floating-badge-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.floating-badge-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT SECTION
+   -------------------------------------------------------------------------- */
+.about-section {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* About Main Bio Card */
+.about-main-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  padding: 36px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+}
+
+.about-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.about-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--border-radius-md);
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(0, 210, 181, 0.35);
+}
+
+.avatar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--electric-teal);
+  background: rgba(0, 210, 181, 0.12);
+  padding: 4px 10px;
+  border-radius: var(--border-radius-full);
+}
+
+.status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--electric-teal);
+}
+
+.about-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.about-role {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--flutter-sky);
+  margin-bottom: 20px;
+}
+
+.about-quote {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border-left: 3px solid var(--electric-teal);
+  padding: 16px 20px;
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.about-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+}
+
+.detail-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* About Pillar Cards */
+.about-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-md);
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--electric-teal);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-sm);
+  background: rgba(2, 125, 253, 0.12);
+  color: var(--flutter-sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all var(--transition-smooth);
+}
+
+.pillar-card:hover .pillar-icon-box {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+}
+
+.pillar-content h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.pillar-content p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   SKILLS SECTION
+   -------------------------------------------------------------------------- */
+.skills-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* Skills Filter Tabs */
+.skills-filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.filter-tab {
+  padding: 8px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-full);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--electric-teal);
+}
+
+.filter-tab.active {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(0, 210, 181, 0.3);
+}
+
+/* Categories Grid */
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.skill-category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+}
+
+.skill-category-card:hover {
+  border-color: var(--electric-teal);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-category-card.is-hidden {
+  display: none;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.category-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-icon.mobile-color { background: rgba(0, 210, 181, 0.15); color: var(--electric-teal); }
+.category-icon.code-color { background: rgba(2, 125, 253, 0.15); color: var(--flutter-sky); }
+.category-icon.web-color { background: rgba(249, 115, 22, 0.15); color: #F97316; }
+.category-icon.tools-color { background: rgba(124, 58, 237, 0.15); color: var(--accent-purple); }
+
+.category-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.category-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+/* Skills Badges */
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+}
+
+.skill-badge:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--electric-teal);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.skill-badge.primary-highlight {
+  border-left: 3px solid var(--electric-teal);
+}
+
+.skill-badge-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.flutter-icon { background: rgba(2, 125, 253, 0.12); }
+.dart-icon { background: rgba(0, 210, 181, 0.12); }
+.sqlite-icon { background: rgba(14, 165, 233, 0.12); color: #0EA5E9; }
+.state-icon { background: rgba(16, 185, 129, 0.12); color: #10B981; }
+.html-icon { color: #E34F26; }
+.css-icon { color: #1572B6; }
+.vscode-icon { color: #007ACC; }
+.android-icon { color: #3DDC84; }
+.git-icon { color: #F05032; }
+
+.js-icon {
+  background: #F7DF1E;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.skill-badge-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.skill-name {
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--text-primary);
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  padding: 3px 8px;
+  border-radius: var(--border-radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURED PROJECT SECTION (TO-DO APP & LIVE SIMULATOR)
+   -------------------------------------------------------------------------- */
+.project-section {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.project-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Project Info Card */
+.project-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  padding: 38px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-badge-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.badge-featured {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--border-radius-full);
+}
+
+.badge-mobile {
+  background: rgba(2, 125, 253, 0.15);
+  color: var(--flutter-sky);
+  border: 1px solid rgba(2, 125, 253, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--border-radius-full);
+}
+
+.project-name {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.project-lead {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+/* Tech Pills */
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--border-radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+.tech-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.flutter-pill .tech-dot { background-color: var(--flutter-sky); }
+.dart-pill .tech-dot { background-color: var(--electric-teal); }
+.sqlite-pill .tech-dot { background-color: #0EA5E9; }
+.state-pill .tech-dot { background-color: #10B981; }
+
+/* Features List */
+.features-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.feature-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.feature-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 210, 181, 0.15);
+  color: var(--electric-teal);
+  font-weight: 800;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-item strong {
+  color: var(--text-primary);
+}
+
+/* Architecture Box */
+.architecture-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--flutter-sky);
+  border-radius: var(--border-radius-md);
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+
+.arch-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--flutter-sky);
+  margin-bottom: 10px;
+}
+
+.arch-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.arch-content p:last-child {
+  margin-bottom: 0;
+}
+
+.arch-content code {
+  font-family: var(--font-code);
+  font-size: 0.76rem;
+  background: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--electric-teal);
+}
+
+.simulator-instructions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(2, 125, 253, 0.08);
+  border: 1px dashed rgba(2, 125, 253, 0.3);
+  border-radius: var(--border-radius-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.instruction-icon {
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE SMARTPHONE SIMULATOR (FLUTTER APP)
+   -------------------------------------------------------------------------- */
+.simulator-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.simulator-phone {
+  width: 100%;
+  max-width: 360px;
+  height: 640px;
+  background: #111827;
+  border-radius: 42px;
+  border: 10px solid #1E293B;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Phone Notch */
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 22px;
+  background: #1E293B;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.phone-speaker {
+  width: 44px;
+  height: 4px;
+  background: #334155;
+  border-radius: 4px;
+}
+
+.phone-camera {
+  width: 8px;
+  height: 8px;
+  background: #02569B;
+  border-radius: 50%;
+}
+
+/* Screen Internal Layout */
+.phone-screen {
+  background: var(--bg-primary);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Status Bar */
+.simulator-status-bar {
+  height: 38px;
+  padding: 8px 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  z-index: 10;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.battery-icon {
+  width: 18px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 1px;
+  display: inline-flex;
+}
+
+.battery-level {
+  width: 75%;
+  height: 100%;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+/* Flutter AppBar */
+.flutter-appbar {
+  background: var(--grad-flutter);
+  color: #FFFFFF;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.appbar-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.appbar-counter {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 2px 8px;
+  border-radius: var(--border-radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* App Input Section (Material TextField) */
+.app-input-section {
+  padding: 14px 14px 8px;
+}
+
+.todo-form {
+  position: relative;
+}
+
+.input-field-wrap {
+  display: flex;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.input-field-wrap:focus-within {
+  border-color: var(--electric-teal);
+  box-shadow: 0 0 0 2px rgba(0, 210, 181, 0.2);
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.todo-input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-add-task {
+  width: 40px;
+  background: var(--grad-primary);
+  border: none;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.btn-add-task:hover {
+  filter: brightness(1.1);
+}
+
+.todo-validation-error {
+  min-height: 18px;
+  font-size: 0.72rem;
+  color: #EF4444;
+  font-weight: 600;
+  padding: 2px 12px 0;
+}
+
+/* App Filter Tabs */
+.app-filter-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 14px 8px;
+}
+
+.app-chip {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--border-radius-full);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.app-chip:hover {
+  color: var(--text-primary);
+}
+
+.app-chip.active {
+  background: var(--flutter-sky);
+  border-color: var(--flutter-sky);
+  color: #FFFFFF;
+}
+
+/* Task List */
+.app-tasks-container {
+  flex: 1;
+  padding: 4px 14px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 12px;
+  transition: all var(--transition-fast);
+  animation: taskSlideIn 0.25s ease-out;
+}
+
+@keyframes taskSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-card:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+.task-card.completed {
+  opacity: 0.65;
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Checkbox (Flutter Styled) */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--border-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--bg-tertiary);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.task-card.completed .custom-checkbox {
+  background: var(--electric-teal);
+  border-color: var(--electric-teal);
+  color: #FFFFFF;
+}
+
+.task-text {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--transition-fast);
+}
+
+.task-card.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.task-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.task-btn.edit-btn:hover {
+  color: var(--flutter-sky);
+}
+
+.task-btn.delete-btn:hover {
+  color: #EF4444;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-emoji {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.empty-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.empty-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Simulator SnackBar */
+.app-snackbar {
+  position: absolute;
+  bottom: 48px;
+  left: 14px;
+  right: 14px;
+  background: #1E293B;
+  color: #F8FAFC;
+  font-size: 0.75rem;
+  padding: 8px 14px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-left: 3px solid var(--electric-teal);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: all 0.25s ease-out;
+  z-index: 50;
+}
+
+.app-snackbar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Simulator Screen Footer */
+.simulator-screen-footer {
+  padding: 8px 14px;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-reset-demo {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.btn-reset-demo:hover {
+  color: var(--electric-teal);
+}
+
+.db-sync-indicator {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--electric-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.db-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--electric-teal);
+}
+
+/* Home Indicator Bar */
+.home-indicator {
+  width: 110px;
+  height: 4px;
+  background: var(--text-muted);
+  border-radius: 4px;
+  margin: 6px auto;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT SECTION
+   -------------------------------------------------------------------------- */
+.contact-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Contact Info Card */
+.contact-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  padding: 38px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.contact-info-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 34px;
+}
+
+.contact-method-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-method-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-md);
+  background: rgba(2, 125, 253, 0.12);
+  color: var(--flutter-sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-method-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-method-val {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* GitHub Profile Card */
+.github-profile-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  transition: all var(--transition-smooth);
+}
+
+.github-profile-card:hover {
+  border-color: var(--electric-teal);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.github-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.github-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.github-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.btn-github {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-github:hover {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-lg);
+  padding: 38px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.form-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.label-with-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.char-counter {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.required-star {
+  color: #EF4444;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--electric-teal);
+  box-shadow: 0 0 0 3px rgba(0, 210, 181, 0.18);
+}
+
+.form-control.has-error {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field-error {
+  display: none;
+  font-size: 0.78rem;
+  color: #EF4444;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.field-error.show {
+  display: block;
+}
+
+/* Submit Button & Spinner */
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Form Success Banner */
+.form-success-banner {
+  margin-top: 20px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--border-radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-primary);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.success-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #10B981;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.form-success-banner p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--electric-teal);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.btn-back-to-top {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-full);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-back-to-top:hover {
+  background: var(--grad-primary);
+  color: #FFFFFF;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL FLOATING TOAST
+   -------------------------------------------------------------------------- */
+.portfolio-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--electric-teal);
+  border-radius: var(--border-radius-md);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  backdrop-filter: blur(16px);
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.portfolio-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-badge {
+    margin: 0 auto 24px;
+  }
+
+  .hero-description {
+    margin: 0 auto 34px;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-highlights {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    margin-top: 20px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-main-card {
+    position: static;
+  }
+
+  .project-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  /* Mobile Navigation Drawer */
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 20px;
+    box-shadow: var(--shadow-lg);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path 0.35s ease-in-out;
+  }
+
+  .nav-menu.open {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .nav-link {
+    font-size: 1.05rem;
+    width: 100%;
+  }
+
+  /* About pillars stack on small screens */
+  .about-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  /* Skills categories single column on small screens */
+  .skills-categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-badge {
+    display: none; /* Hide floating badges on narrow screens to prevent overflow */
+  }
+
+  .simulator-phone {
+    height: 590px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .simulator-phone {
+    max-width: 320px;
+    height: 560px;
+  }
+}
